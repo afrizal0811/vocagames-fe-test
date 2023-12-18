@@ -1,7 +1,7 @@
-import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
 import { useSelector } from 'react-redux'
-import { expiredTime } from '../constants/expiredTime'
+import { setCookies } from '../utility/cookies'
+
 const LoginButton = (props) => {
   const { loginData } = props
   const router = useRouter()
@@ -13,7 +13,7 @@ const LoginButton = (props) => {
         data.username === loginData.username &&
         data.password === loginData.password
     )
-    Cookies.set('user', JSON.stringify(loggedUser), { expires: expiredTime() })
+    setCookies('user', loggedUser)
     if (loggedUser) router.push('/pages/profile')
     else alert('kosong')
   }

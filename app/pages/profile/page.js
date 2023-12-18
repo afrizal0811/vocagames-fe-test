@@ -1,10 +1,12 @@
 'use client'
 import InputText from '@/app/components/InputText'
 import LogoutButton from '@/app/components/LogoutButton'
-import Cookies from 'js-cookie'
+import { getCookies } from '@/app/utility/cookies'
+import { redirect } from 'next/navigation'
 const Profile = () => {
-  const userData = JSON.parse(Cookies.get('user'))
-  const { username, phone } = userData
+  const userData = getCookies('user')
+  if (!userData) redirect('/pages/login')
+
   return (
     <>
       <LogoutButton />
@@ -19,7 +21,7 @@ const Profile = () => {
             placeholder='Ketik nama Anda'
             name='username'
             id='username'
-            value={username}
+            value={userData.username}
           />
           <div>
             <InputText
@@ -28,7 +30,7 @@ const Profile = () => {
               placeholder='Ketik nomor handphone Anda'
               name='phone'
               id='phone'
-              value={phone}
+              value={userData.phone}
             />
           </div>
           <div>

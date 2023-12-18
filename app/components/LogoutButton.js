@@ -1,9 +1,9 @@
-import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
+import { removeCookies } from '../utility/cookies'
 const LogoutButton = () => {
   const router = useRouter()
   const handleClick = () => {
-    Cookies.remove('user')
+    removeCookies('user')
     router.push('/pages/login')
   }
   return <button onClick={() => handleClick()}>Logout</button>
