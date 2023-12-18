@@ -75,7 +75,7 @@ const Register = () => {
         <RegisterButton data={data} />
       </div>
       <p>
-        Sudah punya akun? <Link href='/'>Login Sekarang</Link>
+        Sudah punya akun? <Link href='/pages/login'>Login Sekarang</Link>
       </p>
     </>
   )

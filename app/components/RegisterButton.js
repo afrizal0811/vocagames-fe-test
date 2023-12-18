@@ -15,10 +15,9 @@ const RegisterButton = (props) => {
         username: username,
         phone: phone,
         password: password,
-        confirmPassword: confirmPassword,
       }
       dispatch(addUser(userData))
-      router.push('/')
+      router.push('/pages/login')
     } else alert('beda')
   }
   return (
