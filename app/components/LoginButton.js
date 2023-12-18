@@ -18,9 +18,14 @@ const LoginButton = (props) => {
     else alert('tidak ada data')
   }
   return (
-    <>
-      <button onClick={() => handleClick()}>Masuk Sekarang</button>
-    </>
+    <div className='my-8'>
+      <button
+        className='rounded-full w-full py-2 px-4 bg-[#e5e7fd] text-[#20184e] font-extrabold '
+        onClick={() => handleClick()}
+      >
+        Masuk Sekarang
+      </button>
+    </div>
   )
 }
 
