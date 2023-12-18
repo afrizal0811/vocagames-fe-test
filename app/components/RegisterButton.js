@@ -1,4 +1,4 @@
-'use client'
+
 import { addUser } from '@/store/slice'
 import { useRouter } from 'next/navigation'
 import { useDispatch } from 'react-redux'

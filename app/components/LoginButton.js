@@ -1,4 +1,4 @@
-'use client'
+import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
 import { useSelector } from 'react-redux'
 
@@ -13,6 +13,7 @@ const LoginButton = (props) => {
         data.username === loginData.username &&
         data.password === loginData.password
     )
+    Cookies.set('user', JSON.stringify(loggedUser))
     if (loggedUser) router.push('/pages/profile')
     else alert('kosong')
   }

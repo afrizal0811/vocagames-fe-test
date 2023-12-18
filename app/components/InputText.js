@@ -1,7 +1,7 @@
 'use client'
 
 const InputText = (props) => {
-  const { type, placeholder, name, id, onChange, label } = props
+  const { type, placeholder, name, id, onChange, label, value } = props
   return (
     <>
       <b>{label}</b>
@@ -12,6 +12,7 @@ const InputText = (props) => {
         name={name}
         id={id}
         onChange={onChange}
+        value={value}
         required
       />
     </>
