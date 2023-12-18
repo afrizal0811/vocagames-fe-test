@@ -35,16 +35,14 @@ const Login = () => {
           sunt.
         </p>
       </div>
-      <div className='flex-1 flex flex-col items-center justify-center text-gray-500 border'>
+      <div className='flex-1 flex flex-col items-center justify-center text-gray-500'>
         <div>
-          <div>
-            <h1 className='text-6xl font-extrabold pb-4 text-[#20184e]'>
-              Silahkan Login
-            </h1>
-            <p className='font-normal mt-2 mb-5'>
-              Masukkan Username dan password Anda untuk masuk
-            </p>
-          </div>
+          <h1 className='text-6xl font-extrabold pb-4 text-[#20184e]'>
+            Silahkan Login
+          </h1>
+          <p className='font-normal mt-2 mb-5'>
+            Masukkan Username dan password Anda untuk masuk
+          </p>
           <div className='pt-4'>
             <InputText
               label='Username'
@@ -53,7 +51,6 @@ const Login = () => {
               name='username'
               id='username'
               onChange={(e) => handleChange(e)}
-              required
             />
             <InputText
               label='Password'
@@ -62,7 +59,6 @@ const Login = () => {
               name='password'
               id='password'
               onChange={(e) => handleChange(e)}
-              required
             />
           </div>
           <LoginButton loginData={loginData} />

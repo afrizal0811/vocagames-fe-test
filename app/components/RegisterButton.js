@@ -21,9 +21,14 @@ const RegisterButton = (props) => {
     } else alert('beda')
   }
   return (
-    <>
-      <button onClick={userDispatch}>Daftar Sekarang</button>
-    </>
+    <div className='my-8'>
+      <button
+        className='rounded-full w-full py-2 px-4 bg-[#e5eafd] text-black font-extrabold '
+        onClick={userDispatch}
+      >
+        Daftar Sekarang
+      </button>
+    </div>
   )
 }
 
