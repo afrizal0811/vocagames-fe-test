@@ -15,7 +15,7 @@ const LoginButton = (props) => {
     )
     setCookies('user', loggedUser)
     if (loggedUser) router.push('/pages/profile')
-    else alert('kosong')
+    else alert('tidak ada data')
   }
   return (
     <>

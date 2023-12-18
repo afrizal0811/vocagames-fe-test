@@ -2,10 +2,11 @@
 import InputText from '@/app/components/InputText'
 import LogoutButton from '@/app/components/LogoutButton'
 import { getCookies } from '@/app/utility/cookies'
-import { redirect } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 const Profile = () => {
+  const router = useRouter()
   const userData = getCookies('user')
-  if (!userData) redirect('/pages/login')
+  if (!userData) router.push('/pages/login')
 
   return (
     <>
@@ -21,7 +22,7 @@ const Profile = () => {
             placeholder='Ketik nama Anda'
             name='username'
             id='username'
-            value={userData.username}
+            value={userData && userData.username}
           />
           <div>
             <InputText
@@ -30,7 +31,7 @@ const Profile = () => {
               placeholder='Ketik nomor handphone Anda'
               name='phone'
               id='phone'
-              value={userData.phone}
+              value={userData && userData.phone}
             />
           </div>
           <div>
