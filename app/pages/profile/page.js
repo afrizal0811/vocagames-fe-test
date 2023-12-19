@@ -38,7 +38,7 @@ const Profile = () => {
                 {userData && userData.username}
               </span>
             </div>
-            <div class='border border-red-500 flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse'>
+            <div class='flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse'>
               <EditButton />
             </div>
           </div>

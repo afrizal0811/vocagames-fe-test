@@ -3,11 +3,13 @@
 import Alert from '@/app/components/Alert'
 import InputText from '@/app/components/InputText'
 import { validation } from '@/app/utility/validation'
+import { addUser } from '@/store/slice'
 import { isEmpty } from 'lodash'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
+
 const Register = () => {
   const dispatch = useDispatch()
   const router = useRouter()
@@ -20,12 +22,13 @@ const Register = () => {
     confirmPassword: '',
   })
   const emptyErrors = isEmpty(errors)
+
   useEffect(() => {
     if (errors) {
       setErrors(validation(data))
-      console.log(errors)
     }
   }, [data])
+
   const handleChange = (e) => {
     const { name, value } = e.target
     setData((prev) => ({
@@ -33,7 +36,8 @@ const Register = () => {
       [name]: value,
     }))
   }
-  const userDispatch = () => {
+
+  const handliClick = () => {
     const { username, phone, password } = data
     if (emptyErrors) {
       setTouch(false)
@@ -97,7 +101,7 @@ const Register = () => {
           <div className='my-8'>
             <button
               className='rounded-full w-full py-2 px-4 bg-[#e5eafd] text-black font-extrabold '
-              onClick={userDispatch}
+              onClick={handliClick}
             >
               Daftar Sekarang
             </button>
