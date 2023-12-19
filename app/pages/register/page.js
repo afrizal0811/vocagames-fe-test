@@ -1,17 +1,31 @@
 'use client'
 
+import Alert from '@/app/components/Alert'
 import InputText from '@/app/components/InputText'
-import RegisterButton from '@/app/components/RegisterButton'
+import { validation } from '@/app/utility/validation'
+import { isEmpty } from 'lodash'
 import Link from 'next/link'
-import { useState } from 'react'
-
+import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
 const Register = () => {
+  const dispatch = useDispatch()
+  const router = useRouter()
+  const [errors, setErrors] = useState({})
+  const [touch, setTouch] = useState(false)
   const [data, setData] = useState({
     username: '',
     phone: '',
     password: '',
     confirmPassword: '',
   })
+  const emptyErrors = isEmpty(errors)
+  useEffect(() => {
+    if (errors) {
+      setErrors(validation(data))
+      console.log(errors)
+    }
+  }, [data])
   const handleChange = (e) => {
     const { name, value } = e.target
     setData((prev) => ({
@@ -19,16 +33,29 @@ const Register = () => {
       [name]: value,
     }))
   }
+  const userDispatch = () => {
+    const { username, phone, password } = data
+    if (emptyErrors) {
+      setTouch(false)
+      const userData = {
+        username: username,
+        phone: phone,
+        password: password,
+      }
+      dispatch(addUser(userData))
+      router.push('/pages/login')
+    } else setTouch(true)
+  }
+
   return (
     <div className='m-0 p-0 h-screen flex flex-row'>
       <div className='flex-1 flex flex-col items-center justify-center bg-[#131167] text-white'>
+        <div>{touch && !emptyErrors && <Alert errors={errors} />}</div>
         <div className='w-4/12'>
-          <div>
-            <h1 className='text-6xl font-extrabold pb-4'>Daftarkan Akun</h1>
-            <p className='font-normal mt-2 mb-5'>
-              Daftar akun Anda dangan mengisi form dibawah
-            </p>
-          </div>
+          <h1 className='text-6xl font-extrabold pb-4'>Daftarkan Akun</h1>
+          <p className='font-normal mt-2 mb-5'>
+            Daftar akun Anda dangan mengisi form dibawah
+          </p>
           <div className='pt-4'>
             <InputText
               label='Nama Anda'
@@ -67,7 +94,14 @@ const Register = () => {
               onChange={(e) => handleChange(e)}
             />
           </div>
-          <RegisterButton data={data} />
+          <div className='my-8'>
+            <button
+              className='rounded-full w-full py-2 px-4 bg-[#e5eafd] text-black font-extrabold '
+              onClick={userDispatch}
+            >
+              Daftar Sekarang
+            </button>
+          </div>
           <p className='text-center'>
             Sudah punya akun?{' '}
             <Link
